@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🎉 Triggered by ${{ github.event_name }} event
+      - name: 🎉 Triggered by GitHub event
         run: echo "🐧 Running on ${{ runner.os }}"
 
       - name: Checkout repository
