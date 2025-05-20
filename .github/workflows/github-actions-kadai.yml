@@ -1,0 +1,39 @@
+name: GitHub Actions kadai
+run-name: kadai3
+
+on: [push]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🎉 Triggered by ${{ github.event_name }} event
+        run: echo "🐧 Running on ${{ runner.os }}"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 💡 Show repository info
+        run: |
+          echo "Branch: ${{ github.ref }}"
+          echo "Repo: ${{ github.repository }}"
+
+      - name: List files in workspace
+        run: ls ${{ github.workspace }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Compile HelloWorld.java
+        run: javac src/HelloWorld.java
+
+      - name: Run HelloWorld
+        run: java -cp src HelloWorld
+
+      - name: ✅ Job complete
+        run: echo "🍏 Job status: ${{ job.status }}"
+
